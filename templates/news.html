@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News, De-amp'd</title>
+    <style>
+        body {
+            background: black;
+            color: lightgray;
+        }
+
+        a{
+            color: lightgray;
+            text-decoration: none;
+        }
+
+        .wrapper {
+            display: grid;
+            grid-auto-rows: minmax(100px, auto);
+            grid-gap: 10px;
+             margin: 0 auto;
+             max-width: 1000px;
+        }
+
+        .text {
+            grid-row: 1;
+        }
+
+        .img {
+            grid-column: 3;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1 style="text-align: center; border-bottom: 1px solid gray; padding-bottom: 1rem;">News, De-amp'd</h1>
+</header>
+{% for article in data %}
+    <a href="{{ article.link }}">
+        <div class="wrapper" style="border-bottom: 1px solid #232529;">
+            <div class="text">
+                <h3>{{ article.title }}</h3>
+                <p>{{ article.desc }}</p>
+            </div>
+            <div class="img">
+                <img src="{{ article.img }}" style="width:100px; height:100px; float: right;">
+            </div>
+        </div>
+    </a>
+{% endfor %}
+</body>
+</html>
