@@ -25,7 +25,7 @@ SECRET_KEY = '#orxj#dno5$rat6tun$+rq!ro2l*fc@vejrrk%#50m%=3a2uc3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -48,7 +48,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'News_Deampd.urls'
+ROOT_URLCONF = 'news_deampd.urls'
 
 TEMPLATES = [
     {
@@ -67,19 +67,22 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'News_Deampd.wsgi.application'
+WSGI_APPLICATION = 'news_deampd.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-DATABASES = {
+CACHES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'BACKEND': 'django_redis.cache.RedisCache',
+        "LOCATION": os.getenv('ENT_REDIS_LOCATION', 'redis://127.0.0.1:6379'),
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "SOCKET_CONNECT_TIMEOUT": 10,
+            "SOCKET_TIMEOUT": 10,
+        }
+    },
 }
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_EXPIRATION = 10 * 60     # x * 60 seconds
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
