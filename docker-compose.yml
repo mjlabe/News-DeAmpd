@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  web:
+    image: news:latest
+    command: python manage.py runserver 0.0.0.0:8007
+    volumes:
+      - .:/src
+    ports:
+      - "8007:8007"
+    depends_on:
+      - redis
+    environment:
+      - DJANGO_SETTINGS_MODULE=news_deampd.settings
+      - ENT_REDIS_LOCATION=redis://redis:6369
+
+  redis:
+    image: "redis:alpine"
+    restart: always
