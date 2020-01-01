@@ -10,7 +10,7 @@ CACHE_TTL = getattr(settings, 'CACHE_TTL', settings.SESSION_EXPIRATION)
 
 class NewsViewSet(View):
     @staticmethod
-    @cache_page(CACHE_TTL)
+    # @cache_page(CACHE_TTL)
     def get(request):
         news = GoogleNews()
         news.get_news(deamplify=True)

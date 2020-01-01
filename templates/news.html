@@ -12,6 +12,8 @@
         .content {
             margin: 0 auto;
             max-width: 1000px;
+            padding-left: 1rem;
+            padding-right: 1rem;
         }
 
         a {
@@ -19,23 +21,53 @@
             text-decoration: none;
         }
 
-        .time{
-            margin-bottom: 0.5em;
+        p {
+            margin: 0;
         }
 
         .wrapper {
             display: grid;
             grid-auto-rows: minmax(100px, auto);
             grid-gap: 10px;
+            height: 100%;
         }
 
         .text {
             grid-row: 1;
+            height: 80%;
+        }
+
+        .title {
+            margin-bottom: 0;
+            height: 80%;
+        }
+
+        .time {
+            height: 20%;
+            vertical-align: bottom;
+            padding-bottom: 30px;
         }
 
         .img {
             grid-column: 3;
-            margin-top: 1em;
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+        }
+
+        @media only screen and (max-device-width: 768px) {
+            img {
+                width: 200px;
+                height: 200px;
+            }
+
+            body{
+                font-size: 200%;
+            }
         }
     </style>
 </head>
@@ -45,15 +77,21 @@
 </header>
 <div class="content">
     {% for article in data %}
+        {% ifchanged article.section %}
+            <div>
+                <h2 style="border-bottom: 1px solid gray; padding-top: 1rem;">{{ article.section }}</h2>
+            </div>
+        {% endifchanged %}
         <a href="{{ article.link }}">
-            <div class="wrapper" style="border-bottom: 1px solid #232529;">
+            <div class="wrapper" style="border-bottom: 1px solid #464646;">
                 <div class="text">
-                    <h3>{{ article.title }}</h3>
-                    <p>{{ article.desc }}</p>
-                    <p class="time"><i style="color: #464646">{{ article.time }}</i></p>
+                    <h3 class="title">{{ article.title }}</h3>
+                    <div class="time">
+                        <p style="display: inline-block;"><i style="color: #646464">{{ article.time }}</i></p>
+                    </div>
                 </div>
                 <div class="img">
-                    <img src="{{ article.img }}" style="width:100px; height:100px; float: right;">
+                    <img src="{{ article.img }}" style="float: right;">
                 </div>
             </div>
         </a>
