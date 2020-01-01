@@ -65,7 +65,7 @@
                 height: 200px;
             }
 
-            body{
+            body {
                 font-size: 200%;
             }
         }
@@ -78,23 +78,28 @@
 <div class="content">
     {% for article in data %}
         {% ifchanged article.section %}
-            <div>
-                <h2 style="border-bottom: 1px solid gray; padding-top: 1rem;">{{ article.section }}</h2>
-            </div>
+            {% if article.section != 'Sports' %}
+                <div>
+                    <h2 style="border-bottom: 1px solid gray; padding-top: 1rem;">{{ article.section }}</h2>
+                </div>
+            {% endif %}
         {% endifchanged %}
-        <a href="{{ article.link }}">
-            <div class="wrapper" style="border-bottom: 1px solid #464646;">
-                <div class="text">
-                    <h3 class="title">{{ article.title }}</h3>
-                    <div class="time">
-                        <p style="display: inline-block;"><i style="color: #646464">{{ article.time }} - {{ article.site }}</i></p>
+        {% if article.section != 'Sports' %}
+            <a href="{{ article.link }}">
+                <div class="wrapper" style="border-bottom: 1px solid #464646;">
+                    <div class="text">
+                        <h3 class="title">{{ article.title }}</h3>
+                        <div class="time">
+                            <p style="display: inline-block;"><i style="color: #646464">{{ article.time }} -
+                                {{ article.site }}{% if article.desc == 'video' %} - Video{% endif %}</i></p>
+                        </div>
+                    </div>
+                    <div class="img">
+                        <img src="{{ article.img }}" style="float: right;" alt="News">
                     </div>
                 </div>
-                <div class="img">
-                    <img src="{{ article.img }}" style="float: right;">
-                </div>
-            </div>
-        </a>
+            </a>
+        {% endif %}
     {% endfor %}
 </div>
 </body>

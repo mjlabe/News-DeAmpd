@@ -16,7 +16,7 @@ RUN apt-get install -y binutils libproj-dev gdal-bin
 RUN apt-get install -y software-properties-common
 
 ADD requirements.txt /src/
-RUN pip install -r requirements.txt --upgrade
+RUN pip install -r requirements.txt --no-cache-dir
 
 ADD . /src/
 
