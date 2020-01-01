@@ -11,6 +11,9 @@ shell:
 .PHONY: build
 build:
 	docker build -t $(CONTAINER_NAME) .
+.PHONY: cleanbuild
+cleanbuild:
+	docker build --no-cache -t $(CONTAINER_NAME) .
 
 ### DEPLOYMENT ================================================================
 
