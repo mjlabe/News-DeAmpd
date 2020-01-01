@@ -102,6 +102,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Set cookies samesite secure
+SESSION_COOKIE_SAMESITE = 'Strict'
+CSRF_COOKIE_SAMESITE = 'Strict'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/

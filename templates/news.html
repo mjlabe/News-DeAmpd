@@ -9,17 +9,24 @@
             color: lightgray;
         }
 
-        a{
+        .content {
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+
+        a {
             color: lightgray;
             text-decoration: none;
+        }
+
+        .time{
+            margin-bottom: 0.5em;
         }
 
         .wrapper {
             display: grid;
             grid-auto-rows: minmax(100px, auto);
             grid-gap: 10px;
-             margin: 0 auto;
-             max-width: 1000px;
         }
 
         .text {
@@ -28,6 +35,7 @@
 
         .img {
             grid-column: 3;
+            margin-top: 1em;
         }
     </style>
 </head>
@@ -35,18 +43,21 @@
 <header>
     <h1 style="text-align: center; border-bottom: 1px solid gray; padding-bottom: 1rem;">News, De-amp'd</h1>
 </header>
-{% for article in data %}
-    <a href="{{ article.link }}">
-        <div class="wrapper" style="border-bottom: 1px solid #232529;">
-            <div class="text">
-                <h3>{{ article.title }}</h3>
-                <p>{{ article.desc }}</p>
+<div class="content">
+    {% for article in data %}
+        <a href="{{ article.link }}">
+            <div class="wrapper" style="border-bottom: 1px solid #232529;">
+                <div class="text">
+                    <h3>{{ article.title }}</h3>
+                    <p>{{ article.desc }}</p>
+                    <p class="time"><i style="color: #464646">{{ article.time }}</i></p>
+                </div>
+                <div class="img">
+                    <img src="{{ article.img }}" style="width:100px; height:100px; float: right;">
+                </div>
             </div>
-            <div class="img">
-                <img src="{{ article.img }}" style="width:100px; height:100px; float: right;">
-            </div>
-        </div>
-    </a>
-{% endfor %}
+        </a>
+    {% endfor %}
+</div>
 </body>
 </html>
