@@ -83,6 +83,8 @@ CACHES = {
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 SESSION_EXPIRATION = 10 * 60     # x * 60 seconds
+if DEBUG:
+    SESSION_EXPIRATION = 1
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
