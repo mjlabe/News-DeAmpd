@@ -1,3 +1,4 @@
+from django.core.exceptions import ImproperlyConfigured
 from django.shortcuts import render
 from django.views import View
 from django.views.decorators.cache import cache_page
@@ -22,16 +23,16 @@ class NewsViewSet(View):
 
 class NewscatcherView(View):
     news = {}
-    websites = []
-    topics = ['news', 'tech',  'science', 'world', 'business', 'finance', 'politics', 'economics', 'travel',]
+    if not settings.NEWS_SOURCES:
+        raise ImproperlyConfigured('Must Set NEWS_SOURCES in settings.')
 
     @cache_page(CACHE_TTL)
     def get(self, request):
         return render(request, 'news.html', {'data': self.news})
 
     def get_news(self):
-        for topic in self.topics:
-            for website in self.websites:
+        for topic in settings.NEWS_SOURCES.keys():
+            for website in settings.NEWS_SOURCES[topic]:
                 nc = Newscatcher(website=website, topic=topic)
 
                 results = nc.get_news()
