@@ -3,11 +3,11 @@ version: '3'
 services:
   web:
     image: news:latest
-    command: python manage.py runserver 0.0.0.0:8007
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/src
     ports:
-      - "8007:8007"
+      - "8000:8000"
     depends_on:
       - redis
     environment:
