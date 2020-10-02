@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = '#orxj#dno5$rat6tun$+rq!ro2l*fc@vejrrk%#50m%=3a2uc3'
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -82,7 +80,7 @@ CACHES = {
 }
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
-SESSION_EXPIRATION = 10 * 60     # x * 60 seconds
+SESSION_EXPIRATION = 10 * 60  # x * 60 seconds
 if DEBUG:
     SESSION_EXPIRATION = 1
 
@@ -121,8 +119,22 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+NEWS_SOURCES = {
+    'NEWS': ['cnn.com', 'cnbc.com', 'nytimes.com', 'chicagotribune.com', 'washingtonpost.com', 'abcnews.go.com',
+             'nbcnews.com', 'latimes.com'],
+    'TECH': ['pcworld.com', 'tomshardware.com', 'arstechnica.com', 'cnet.com'],
+    'SCIENCE': ['arstechnica.com', 'space.com', 'phys.org', 'cnet.com'],
+    'WORLD': ['theguardian.com', 'aljazeera.com', ],
+    'BUSINESS': ['marketwatch.com'],
+    'FINANCE': ['marketwatch.com'],
+    'POLITICS': ['cnn.com', 'cnbc.com', 'nytimes.com', 'chicagotribune.com', 'washingtonpost.com', 'abcnews.go.com',
+                 'nbcnews.com', 'latimes.com'],
+    'ECONOMICS': ['marketwatch.com'],
+    'TRAVEL': ['cnn.com', 'cnbc.com', 'nytimes.com', 'chicagotribune.com', 'washingtonpost.com', 'abcnews.go.com',
+               'nbcnews.com', 'latimes.com'],
+}
